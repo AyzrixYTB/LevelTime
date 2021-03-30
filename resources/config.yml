@@ -1,0 +1,10 @@
+#
+# USAGE
+# levels:
+#   levelName:
+#      time: number
+#      freeze: true|false
+levels:
+  world:
+    time: 15000
+    freeze: true
