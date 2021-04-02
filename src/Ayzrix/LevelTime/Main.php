@@ -14,7 +14,10 @@ class Main extends PluginBase {
     public function onEnable() {
         self::$instance = $this;
         $this->saveDefaultConfig();
-        $count = 0;
+        self::initWorlds();
+    }
+
+    public static function initWorlds(): void {
         foreach (Utils::getIntoConfig("levels") as $level => $values) {
             $time = (int)$values["time"];
             $freeze = (bool)$values["freeze"];
@@ -22,11 +25,11 @@ class Main extends PluginBase {
             $level = $this->getServer()->getLevelByName($level);
             if ($level !== null) {
                 $level->setTime($time);
-                $count++;
-                if ($freeze === true) $level->stopTime();
+                if ($freeze === true) {
+                    $level->stopTime();
+                }
             }
         }
-        $this->getLogger()->notice("Time of {$count} level(s) successfully changed.");
     }
 
     /**
