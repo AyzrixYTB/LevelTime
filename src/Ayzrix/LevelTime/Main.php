@@ -14,10 +14,10 @@ class Main extends PluginBase {
     public function onEnable() {
         self::$instance = $this;
         $this->saveDefaultConfig();
-        self::initWorlds();
+        $this->initWorlds();
     }
 
-    public static function initWorlds(): void {
+    public function initWorlds(): void {
         foreach (Utils::getIntoConfig("levels") as $level => $values) {
             $time = (int)$values["time"];
             $freeze = (bool)$values["freeze"];
